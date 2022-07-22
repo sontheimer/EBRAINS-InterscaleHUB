@@ -246,6 +246,11 @@ class CommunicatorNestTvb(BaseCommunicator):
 
                     # buffer_size=self._data_buffer_manager.get_at(index=-2),
                     # data_buffer=self._data_buffer_manager.mpi_shared_memory_buffer)
+                
+                # NOTE: NEW online_uea in two steps (see mediator calls):
+                # 1) spikes to spiketrains 2) uea analysis
+                # NOTE: trigger events not yet handled
+                self._mediator.online_uea_update(count, size_at_index=-2, events=None)
 
                 # Mark as 'ready to receive next simulation step'
                 # self.__databuffer[-1] = 1
@@ -267,6 +272,11 @@ class CommunicatorNestTvb(BaseCommunicator):
                 ### OLD Code end
             elif status_.Get_tag() == 1:
                 # NOTE: simulation ended
+
+                # NOTE: NEW online_uea get results
+                # TODO: save to file!?
+                result_dict = self._mediator.online_uea_get_results()
+                print(f"InterscaleHUB -- OnelineUEA results: {result_dict}")
                 # everything goes fine, terminate the loop and respond with OK
                 return Response.OK
             else:
