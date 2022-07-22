@@ -59,3 +59,38 @@ class InterscaleHubMediator:
         times, data = self.__analyzer.spiketrains_to_rate(count, spike_trains)
         self.__logger.debug(f'analyzed rates, time: {times}, data: {data}')
         return times, data
+
+    def online_uea_update(self, count, size_at_index, events):
+        '''
+        1) converts incoming spikes to spiketrains
+        NOTE: uses the spike_to_spiketrains method from above
+
+        2) Updates the entries of the result dictionary by processing the
+        new arriving 'spiketrains' and trial defining trigger 'events'.
+        '''
+        # TODO refactor buffer indexing and buffer access inside analyzer and transformer
+        buffer_size = self.__data_buffer_manager.get_at(index=size_at_index)
+        data_buffer = self.__data_buffer_manager.mpi_shared_memory_buffer
+        # 1) spike to spike_trains in transformer
+        spike_trains = self.__transformer.spike_to_spiketrains(count, buffer_size, data_buffer)
+        # 2) uae with spiketrains in analyzer
+        self.__analyzer.online_uea_update(spike_trains, events)
+        self.__logger.debug(f'updated uea analysis with spiketrains: {spike_trains}, events: {events}')
+
+    def online_uea_get_results(self):
+        '''
+        Returns the result dictionary with the following class attribute names
+        as keys and the corresponding attribute values as the complementary
+        value for the key: (see also Attributes section for respective key
+        descriptions)
+        * 'Js'
+        * 'indices'
+        * 'n_emp'
+        * 'n_exp'
+        * 'rate_avg'
+        * 'input_parameters'
+        '''
+        results = self.__analyzer.online_uea_get_results()
+        self.__logger.debug(f'requested results: {results}')
+        return results
+

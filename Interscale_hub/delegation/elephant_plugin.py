@@ -13,11 +13,11 @@
 # ------------------------------------------------------------------------------
 # import numpy as np
 
-# NOTE plugin to be merged in Elephant main !?
+# NOTE plugin to be merged in Elephant main
 # import elephant
-# TODO fork, clone and properly import the plugin
 # https://github.com/ojoenlanuca/online_elephant/blob/master/online_statistics.py
-# import online_elephant 
+# https://github.com/INM-6/elephant/blob/feature/online_measures_uea/elephant/online.py 
+# from EBRAINS_InterscaleHUB.Interscale_hub.delegation.online_uea import OnlineUnitaryEventAnalysis
 
 from EBRAINS_ConfigManager.global_configurations_manager.xml_parsers.default_directories_enum import DefaultDirectories
 

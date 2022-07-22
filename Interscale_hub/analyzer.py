@@ -62,3 +62,13 @@ class Analyzer:
                 transformed successfully
         """
         return self.__elephant_delegator.spiketrains_to_rate(count, spike_trains)
+
+    def online_uea_update(self, spike_trains, events):
+        '''
+        '''
+        return self.__elephant_delgator.update_uea(spike_trains, events)
+
+    def online_uea_get_results(self):
+        '''
+        '''
+        return self.__elephant_delegator.get_results()
