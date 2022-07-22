@@ -66,7 +66,7 @@ class Analyzer:
     def online_uea_update(self, spike_trains, events):
         '''
         '''
-        return self.__elephant_delgator.update_uea(spike_trains, events)
+        return self.__elephant_delegator.update_uea(spike_trains, events)
 
     def online_uea_get_results(self):
         '''

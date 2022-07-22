@@ -12,7 +12,7 @@
 # Team: Multi-scale Simulation and Design
 # ------------------------------------------------------------------------------
 from EBRAINS_InterscaleHUB.Interscale_hub.delegation.elephant_plugin import ElephantPlugin
-from EBRAINS_InterscaleHUB.Interscale_hub.delefation.online_uea import OnlineUnitaryEventAnalysis
+from EBRAINS_InterscaleHUB.Interscale_hub.delegation.online_uea import OnlineUnitaryEventAnalysis
 from EBRAINS_InterscaleHUB.Interscale_hub.delegation.spike_rate_inter_conversion import SpikeRateConvertor
 
 from EBRAINS_ConfigManager.global_configurations_manager.xml_parsers.default_directories_enum import DefaultDirectories
